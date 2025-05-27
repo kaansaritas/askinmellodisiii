@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>❤️ Aşkın Melodisi ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #ffdde1, #fbd0d6);
+            color: #333;
+            text-align: center;
+        }
+        h1, h2 {
+            font-family: 'Great Vibes', cursive;
+            color: #d6336c;
+        }
+        #password-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #fff0f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #d6336c;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff5e95;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .gallery {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            box-shadow: 0 0 10px #ffafcc;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+        .quiz-container {
+            margin-top: 40px;
+            background: #fff0f6;
+            padding: 20px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 10px #ffa6c9;
+        }
+        .quiz-container h3 {
+            color: #c2185b;
+        }
+        .quiz-container button {
+            background: #ff69b4;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 20px;
+            padding: 20px;
+            background-color: #ffe4ec;
+            border-top: 2px dashed #f06292;
+        }
+    </style>
+</head>
+<body>
+    <div id="password-screen">
+        <h2>❤️ Aşkın Melodisi ❤️</h2>
+        <p>Şifreyi giriniz:</p>
+        <input type="password" id="pass" placeholder="16.08.2024">
+        <button onclick="checkPassword()">Giriş</button>
+    </div>
+
+    <audio autoplay loop>
+        <source src="AskinMelodisi.mp3" type="audio/mpeg">
+    </audio>
+
+    <h1 style="margin-top: 20px;">Kaan & Büşra'nın Tatlı Anıları 🍰</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <div class="quiz-container">
+        <h3>Canım sevgilim 💕</h3>
+        <p>En sevdiğim tatlı hangisi?</p>
+        <button onclick="quizAnswer(false)">Sütlaç</button>
+        <button onclick="quizAnswer(false)">Tiramisu</button>
+        <button onclick="quizAnswer(true)">Profiterol</button>
+        <p id="quiz-feedback"></p>
+    </div>
+
+    <footer>
+        ❤️ Canım sevgilim Büşra, seninle her gün bir melodinin en güzel notası gibi... Seni çok seviyorum! ❤️
+    </footer>
+
+<script>
+    const correctPassword = "16.08.2024";
+    function checkPassword() {
+        const input = document.getElementById("pass").value;
+        if (input === correctPassword) {
+            document.getElementById("password-screen").style.display = "none";
+        } else {
+            alert("Yanlış şifre 😢");
+        }
+    }
+
+    const gallery = document.getElementById("gallery");
+    for (let i = 1; i <= 26; i++) {
+        const img = document.createElement("img");
+        img.src = "foto" + i + ".jpg";
+        img.alt = "Foto " + i;
+        img.onclick = () => {
+            document.getElementById("lightbox-img").src = img.src;
+            document.getElementById("lightbox").style.display = "flex";
+        };
+        gallery.appendChild(img);
+    }
+
+    function quizAnswer(correct) {
+        const feedback = document.getElementById("quiz-feedback");
+        if (correct) {
+            feedback.textContent = "Aynen öyle! Profiterolü birlikte yemek gibisi yok 💘";
+        } else {
+            feedback.textContent = "Hmm... Neredeyse yaklaştın 🙈";
+        }
+    }
+</script>
+</body>
+</html>
